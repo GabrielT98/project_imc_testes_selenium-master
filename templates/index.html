@@ -11,10 +11,12 @@
     <body>
         <style>
             .container{
+                margin-top: 20px;
                 border: 0.5px solid black;
                 width: 350px;
                 height: 470px;
                 margin-left: 40%;
+                background-color: wheat;
             }
             label,input {
                  margin-left: 30px;
@@ -22,8 +24,9 @@
             h1,h2{
                 text-align: center;
             }
-            #sexo{
+            #sexo label{
                 display: inline;!important;
+
             }
             button {
                 height: 30px;
@@ -31,11 +34,14 @@
                 margin-left: 110px;
                 margin-top: 20px;
             }
+            body{
+                background-color: antiquewhite;
+            }
 
         </style>
         <div class="container">
             <form action="{% url 'home' %}" method="post">
-                <h1>Calcula IMC</h1>
+                <h1>Calcular IMC</h1>
                 {% csrf_token %}
                 <label id="sexo">Sexo:</label>
                 <br>
@@ -45,16 +51,16 @@
                 <input type="radio" id="sexo_masculino" name="masculino" value="c">
                 <label id="sexo" for="masculino">Masculino</label><br>
                 <br>
-                <label>Altura(metro):</label>
+                <label>Altura (metro):</label>
                 <br>
                 <br>
-                <input type="number" name="altura"step="0.01" required>
+                <input type="number" name="altura"step="0.01" required placeholder="ex: 1.8" min="1">
                 <br>
                 <br>
-                <label>Peso:</label>
+                <label>Peso (kg):</label>
                 <br>
                 <br>
-                <input type="number" name="peso" step="0.01" required>
+                <input type="number" name="peso" step="0.01" required placeholder="ex: 60" min="1">
                 <br>
                 <br>
                 <button type="submit" value="Calcular" onclick="verificar_sexo()">Enviar</button>
