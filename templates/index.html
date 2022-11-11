@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>IMC</title>
+
+    </head>
+    <body>
+        <style>
+            .container{
+                border: 0.5px solid black;
+                width: 350px;
+                height: 470px;
+                margin-left: 40%;
+            }
+            label,input {
+                 margin-left: 30px;
+            }
+            h1,h2{
+                text-align: center;
+            }
+            #sexo{
+                display: inline;!important;
+            }
+            button {
+                height: 30px;
+                width: 130px;
+                margin-left: 110px;
+                margin-top: 20px;
+            }
+
+        </style>
+        <div class="container">
+            <form action="{% url 'home' %}" method="post">
+                <h1>Calcula IMC</h1>
+                {% csrf_token %}
+                <label id="sexo">Sexo:</label>
+                <br>
+                <br>
+                <input type="radio" id="sexo_feminino" name="feminino" value="feminino">
+                <label id="sexo" for="feminino">Feminino</label><br>
+                <input type="radio" id="sexo_masculino" name="masculino" value="c">
+                <label id="sexo" for="masculino">Masculino</label><br>
+                <br>
+                <label>Altura(metro):</label>
+                <br>
+                <br>
+                <input type="number" name="altura"step="0.01" required>
+                <br>
+                <br>
+                <label>Peso:</label>
+                <br>
+                <br>
+                <input type="number" name="peso" step="0.01" required>
+                <br>
+                <br>
+                <button type="submit" value="Calcular" onclick="verificar_sexo()">Enviar</button>
+            </form>
+            {% if resultado %}
+                <h2>{{ resultado }}</h2>
+            {% endif %}
+        </div>
+    <script>
+        function verificar_sexo(){
+            masculino = document.getElementById('sexo_masculino')
+            feminino  = document.getElementById('sexo_feminino')
+            if (masculino.checked == false && feminino.checked == false){
+                alert('Escolha um sexo')
+            }
+        }
+    </script>
+    </body>
+</html>
